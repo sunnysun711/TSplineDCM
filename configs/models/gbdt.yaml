@@ -1,0 +1,20 @@
+# Plain LightGBM multiclass classifier on the flat feature vector (all attributes + z). No utility structure:
+# a predictive reference only, drawn probe-style in figures. See train_boost.py LightGBMTrainer.
+backend: lightgbm
+model_class: gbdt
+boost_config:
+  learning_rate: 0.05
+  num_leaves: 31
+  min_data_in_leaf: 20
+  lambda_l2: 0.0
+  feature_fraction: 1.0
+  num_boost_round: 3000
+  early_stopping_round: 100
+  num_threads: 8
+train_config: {}
+search_space:
+  boost_config.learning_rate: {type: loguniform, lo: 0.01, hi: 0.3}
+  boost_config.num_leaves: {type: int, lo: 7, hi: 127}
+  boost_config.min_data_in_leaf: {type: int, lo: 5, hi: 200}
+  boost_config.lambda_l2: {type: loguniform, lo: 1.0e-3, hi: 10.0}
+  boost_config.feature_fraction: {type: uniform, lo: 0.5, hi: 1.0}

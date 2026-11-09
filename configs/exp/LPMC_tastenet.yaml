@@ -1,0 +1,8 @@
+# Run: python run.py configs/exp/LPMC_tastenet_tuned.yaml
+dataset: LPMC
+splits_name: LPMC_officialtest
+model: tastenet
+model_name: tastenet
+splits: 0-99
+init_seeds: [42]
+overrides: {}

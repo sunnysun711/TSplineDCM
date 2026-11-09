@@ -1,0 +1,44 @@
+# TSplineDCM: dataset-independent architecture defaults.
+# Dataset-tuned fields (T_vae_layers, T_beta, SP_k_gpi_start, epochs,
+# early_stopping_patience, eval_mode, alt_xs_knots, k_gpi_cap) belong in the
+# experiment yaml's overrides.
+backend: torch
+model_class: tspline
+model_config:
+  T_kld_loss_type: B
+  T_C_max: 5.0
+  T_use_target_sigma: false
+  TR_per_alt: false
+  TR_per_sample: true
+  MC_grid_fix_left_zero: true
+  MC_k: 3
+  SP_k_gpi_fix_across_g: false
+  SP_heter_mode: mul
+  # increment | level. "increment" scales I-spline increments -> per-individual
+  # monotone AS-UCFs; "level" = legacy B-spline level scaling (pop.-level only).
+  SP_heter_target: increment
+  GU_every: 20
+  GU_sample_per_x: null
+  GU_epoch_cap: 100
+  GU_blend_eps: 0.5
+train_config:
+  batch_size: 1024
+  lr: 0.01
+  weight_decay: 0.0
+  scheduler: none
+  epochs: 100
+  early_stopping_patience: 30
+  compact_log: true
+  log_every: 5
+  eval_mode: mu
+search_space:   # tune.py; dotted override paths; same TPE budget for every model
+  model_config.T_beta: {type: loguniform, lo: 0.1, hi: 4.0}
+  model_config.SP_k_gpi_start: {type: uniform, lo: 0.1, hi: 0.8}
+  model_config.T_vae_layers: {type: cat_list, choices: [[64], [128], [256]]}
+  train_config.lr: {type: loguniform, lo: 1.0e-3, hi: 5.0e-2}
+  # ONE shared heterogeneity cap for all attributes; upper bound 1.0 = the I-spline monotonicity bound
+  dcm_config.k_gpi_cap: {type: uniform, lo: 0.0, hi: 1.0}
+  # knot-selection study: shrinkage of the increments is what closes the gap to RUMBoost; the
+  # trend-filtering penalty was never selected and stays out. reverse_eps controls dead-increment revival.
+  model_config.SP_l2_incr: {type: loguniform, lo: 1.0e-5, hi: 1.0e-1}
+  model_config.MC_reverse_eps: {type: cat, choices: [1.0e-8, 1.0e-6, 1.0e-4]}

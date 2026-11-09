@@ -1,0 +1,42 @@
+# LPMC shrunk to Swissmetro's training size (identifiability experiment). Same csv, same columns and
+# knots as LPMC.yaml; a separate name so that its HPO studies live in hpo/LPMC_sub/ and never collide with the
+# main LPMC study's. Split file: splits/LPMC_sub_officialtest.npz (official test; train+val = ~7,677 rows of whole households).
+name: LPMC_sub
+file_name: LPMC/lpmc_rumboost_version/lpmc_processed_rumboost.csv
+alt_names: [WALK, CYCLE, PT, CAR]
+alt_av_cols: [-4, -3, -2, -1]
+alt_label_cols: [-8, -7, -6, -5]
+x_names: [TT, AccessT, RailT, BusT, TransWaitT, TransWalkT, ChangesPT, CO, CongestCharge, CongestRate]
+alt_xs:
+  WALK: [TT]
+  CYCLE: [TT]
+  PT: [AccessT, RailT, BusT, TransWaitT, TransWalkT, ChangesPT, CO]
+  CAR: [TT, CO, CongestCharge, CongestRate]
+alt_x_cols:
+  WALK: [9]
+  CYCLE: [10]
+  PT: [11, 12, 13, 14, 15, 16, 18]
+  CAR: [17, 19, 30, 20]
+z_names: [day_of_week, start_time_linear, age, female, driving_license, car_ownership, distance, fueltype_Average, fueltype_Diesel, fueltype_Hybrid, fueltype_Petrol, purpose_B, purpose_HBE, purpose_HBO, purpose_HBW, purpose_NHBO]
+z_cols: [2, 3, 4, 5, 6, 7, 8, 26, 27, 28, 29, 21, 22, 23, 24, 25]
+ID_col: 0   # household id, requires TR_per_sample: true
+share_mc: false
+mono_dirs: {TT: -1, AccessT: -1, RailT: -1, BusT: -1, TransWaitT: -1, TransWalkT: -1, ChangesPT: -1, CO: -1, CongestCharge: -1, CongestRate: -1}
+mono_types: {TT: strict, AccessT: strict, RailT: strict, BusT: strict, TransWaitT: strict, TransWalkT: strict, ChangesPT: strict, CO: strict, CongestCharge: strict, CongestRate: strict}
+fix_asc_zero: CAR
+learn_asc: true
+asc_learner: zspline
+group_id_col: 0
+hold_out_criterion: {dataset: test}   # only used by legacy k-fold path
+alt_xs_knots:
+  WALK: [20]
+  CYCLE: [20]
+  PT: [20, 20, 20, 20, 20, 4, 6]
+  CAR: [20, 10, 3, 20]
+share_taste_p: false
+taste_split_attrs: [TT]
+k_gpi_cap:
+  WALK: [0.5]
+  CYCLE: [0.5]
+  PT: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.1]
+  CAR: [0.5, 0.1, 0.5, 0.5]

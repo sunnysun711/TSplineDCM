@@ -1,0 +1,11 @@
+# Mixed logit estimated by simulated maximum likelihood via biogeme: normally distributed random coefficients,
+# panel likelihood per ID (person in SM, household in LPMC), Halton draws. Which coefficients are random and how
+# many draws are fixed per dataset in the experiment yaml (they go into the paper). No search_space: MLE.
+backend: biogeme
+model_class: mxl_biogeme
+biogeme_config:
+  builder: null            # SM_mxl | LPMC_mxl (train_biogeme.py)
+  builder_kwargs: {}       # e.g. {random: [B_TIME, B_COST], draw_type: NORMAL_HALTON2}
+  mixed: true
+  panel: true
+  draws: 200

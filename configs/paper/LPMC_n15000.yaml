@@ -1,0 +1,21 @@
+# python paper.py configs/paper/LPMC_n15000.yaml --stage run analyze
+dataset: LPMC_n15000_officialtest
+main: tspline
+tune:
+  trials: 0
+  splits: '0'
+splits: 0-19
+ind_splits: '0'
+streams:
+- - LPMCn15000_tspline
+  - LPMCn15000_tspline_homo
+- - LPMCn15000_rumboost
+  - LPMCn15000_gbdt
+  - LPMCn15000_fdnn
+no_tune:
+- LPMCn15000_tspline
+- LPMCn15000_tspline_homo
+- LPMCn15000_rumboost
+- LPMCn15000_gbdt
+- LPMCn15000_fdnn
+inherit: {}

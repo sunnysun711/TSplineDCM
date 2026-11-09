@@ -1,0 +1,16 @@
+# Learning curve: LPMC train+val pool shrunk to ~4,000 rows of whole households, official
+# test unchanged, splits 0-19. Hyperparameters = LPMCsub_rumboost_tuned.yaml (tuned at 7,677 rows), not retuned.
+# Run: python paper.py configs/paper/LPMC_n4000.yaml --stage run analyze
+dataset: LPMC_sub
+model: rumboost
+splits_name: LPMC_n4000_officialtest
+model_name: rumboost
+splits: 0-19
+init_seeds:
+- 42
+overrides:
+  boost_config:
+    learning_rate: 0.03097
+    num_leaves: 2
+    min_data_in_leaf: 134
+    lambda_l2: 0.02443

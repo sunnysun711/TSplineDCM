@@ -1,0 +1,8 @@
+# Run: python run.py configs/exp/LPMCsub_fdnn_tuned.yaml
+dataset: LPMC_sub
+splits_name: LPMC_sub_officialtest
+model: fdnn
+model_name: fdnn
+splits: 0-99
+init_seeds: [42]
+overrides: {}

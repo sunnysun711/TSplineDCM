@@ -1,0 +1,12 @@
+# torch is installed separately (CUDA build recommended): https://pytorch.org
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+pyyaml
+optuna
+lightgbm
+rumboost
+biogeme>=3.2.13
+pytest

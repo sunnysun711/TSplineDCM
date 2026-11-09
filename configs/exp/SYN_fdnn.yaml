@@ -1,0 +1,6 @@
+# Run: python run.py configs/exp/SYN_fdnn.yaml
+dataset: SYN
+model: fdnn
+model_name: fdnn
+splits: 0-4
+init_seeds: [42]

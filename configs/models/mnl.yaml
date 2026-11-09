@@ -1,0 +1,18 @@
+# Torch MNL benchmark (linear-in-parameters utility, gradient-trained).
+# For the biogeme MLE version use configs/models/mnl_biogeme.yaml.
+backend: torch
+model_class: mnl
+model_config: {}
+train_config:
+  batch_size: 1024
+  lr: 0.01
+  weight_decay: 0.0
+  scheduler: none
+  epochs: 200
+  early_stopping_patience: 30
+  compact_log: true
+  log_every: 5
+  eval_mode: mu
+search_space:
+  train_config.lr: {type: loguniform, lo: 1.0e-3, hi: 1.0e-1}
+  train_config.weight_decay: {type: loguniform, lo: 1.0e-8, hi: 1.0e-3}

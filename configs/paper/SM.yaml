@@ -1,0 +1,11 @@
+dataset: SM
+main: tspline
+tune: {trials: 30, splits: "0-2"}
+splits: "0-99"
+ind_splits: "0"
+streams:
+  - [SM_tspline, SM_tspline_level, SM_tspline_homo]
+  - [SM_rumboost, SM_rumboost_pcuf, SM_rumboost_nomono, SM_rumboost_noz, SM_rumboost_fe, SM_gbdt, SM_mnl_biogeme, SM_mxl_biogeme]
+  - [SM_fdnn, SM_tastenet, SM_taste_dcm, SM_mnl, SM_l_mnl, SM_reslogit]
+no_tune: [SM_mnl_biogeme, SM_mxl_biogeme]
+inherit: {SM_rumboost_pcuf: SM_rumboost, SM_rumboost_nomono: SM_rumboost, SM_rumboost_noz: SM_rumboost, SM_rumboost_fe: SM_rumboost}

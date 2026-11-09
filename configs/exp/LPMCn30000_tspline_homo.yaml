@@ -1,0 +1,43 @@
+# Learning curve: LPMC train+val pool shrunk to ~30,000 rows of whole households, official
+# test unchanged, splits 0-19. Hyperparameters = LPMC_tspline_homo_tuned.yaml (tuned at 54,766 rows), not retuned.
+# Run: python paper.py configs/paper/LPMC_n30000.yaml --stage run analyze
+dataset: LPMC
+model: tspline
+splits_name: LPMC_n30000_officialtest
+model_name: tspline_homo
+splits: 0-19
+init_seeds:
+- 42
+overrides:
+  dcm_config:
+    learn_asc: true
+    alt_xs_knots:
+      WALK:
+      - 60
+      CYCLE:
+      - 60
+      PT:
+      - 60
+      - 20
+      - 60
+      - 40
+      - 20
+      - 4
+      - 20
+      CAR:
+      - 60
+      - 40
+      - 3
+      - 60
+    k_gpi_cap: 0.0
+  model_config:
+    MC_k: 3
+    MC_delta_floor: 0.0
+    SP_heter_target: increment
+    SP_l2_incr: 0.0001393
+    MC_reverse_eps: 1.0e-06
+  train_config:
+    epochs: 100
+    early_stopping_patience: 20
+    eval_mode: mc
+    lr: 0.03936

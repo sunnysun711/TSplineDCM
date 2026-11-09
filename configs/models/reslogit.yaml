@@ -1,0 +1,20 @@
+# ResLogit (Wong & Farooq 2021): linear MNL utilities + M residual layers h <- h - softplus(h) W. models/reslogit.py
+backend: torch
+model_class: reslogit
+benchmark_config:
+  n_layers: 4
+model_config: {}
+train_config:
+  batch_size: 1024
+  lr: 0.01
+  weight_decay: 0.0
+  scheduler: none
+  epochs: 200
+  early_stopping_patience: 30
+  compact_log: true
+  log_every: 5
+  eval_mode: mu
+search_space:
+  benchmark_config.n_layers: {type: cat, choices: [1, 2, 4, 8, 16]}
+  train_config.lr: {type: loguniform, lo: 1.0e-3, hi: 1.0e-1}
+  train_config.weight_decay: {type: loguniform, lo: 1.0e-8, hi: 1.0e-3}

@@ -1,0 +1,42 @@
+# DcmConfig for the synthetic dataset (our own DGP, synthetic/generate.py; I-spline increment heterogeneity).
+# The csv column layout is synthetic/generate.py::to_syn_csv. Regenerate the csv with
+#     python synthetic/generate.py
+# Split file: splits/SYN.npz (ROW-level, see splits.py DATASET_SPEC for why). Truth: synthetic/syn_truth.json.
+name: SYN
+file_name: syn_data.csv
+alt_names: [WALK, PT, CAR, CYCLE]
+alt_av_cols: [-4, -3, -2, -1]
+alt_label_cols: [-8, -7, -6, -5]      # choice_sim_0..3 in alt_names order
+x_names: [TT]
+alt_xs:
+  WALK: [TT]
+  PT: [TT]
+  CAR: [TT]
+  CYCLE: [TT]
+alt_x_cols:                           # dur_walking, dur_pt, dur_driving, dur_cycling
+  WALK: [4]
+  PT: [5]
+  CAR: [6]
+  CYCLE: [9]
+z_names: [age, distance, start_time_linear]   # the DGP's tau depends on age and start_time_linear only; distance is a decoy
+z_cols: [1, 2, 3]
+ID_col: 0                             # household_id (rows are repeated DATA_REPEAT times; splits are row-level anyway)
+share_mc: false
+mono_dirs: {TT: -1}
+mono_types: {TT: strict}
+learn_asc: false                      # no z head: utilities are ASC + f(TT) exactly like the DGP; asc_learner below is inert
+asc_learner: zspline
+group_id_col: 0
+fix_asc_zero: CAR                     # DGP: ASC_CAR = 0
+share_taste_p: false
+taste_split_attrs: [TT]               # TT-WALK, TT-PT, TT-CAR, TT-CYCLE get their own tau
+alt_xs_knots:                         # the paper run (configs/exp/SYN_tspline.yaml) overrides to 30
+  WALK: [20]
+  PT: [20]
+  CAR: [20]
+  CYCLE: [20]
+k_gpi_cap:                            # the paper run overrides to 1.0 (the I-spline bound)
+  WALK: [0.5]
+  PT: [0.3]
+  CAR: [0.1]
+  CYCLE: [0.1]

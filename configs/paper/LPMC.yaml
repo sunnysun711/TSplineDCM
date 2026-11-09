@@ -1,0 +1,11 @@
+dataset: LPMC_officialtest
+main: tspline
+tune: {trials: 30, splits: "0-2"}
+splits: "0-99"
+ind_splits: "0"
+streams:
+  - [LPMC_tspline, LPMC_tspline_level]
+  - [LPMC_tspline_homo, LPMC_fdnn, LPMC_tastenet, LPMC_taste_dcm]
+  - [LPMC_rumboost, LPMC_rumboost_pcuf, LPMC_rumboost_nomono, LPMC_rumboost_noz, LPMC_rumboost_fe, LPMC_gbdt, LPMC_mnl, LPMC_l_mnl, LPMC_reslogit, LPMC_mnl_biogeme, LPMC_mxl_biogeme]
+no_tune: [LPMC_mnl_biogeme, LPMC_mxl_biogeme]
+inherit: {LPMC_rumboost_pcuf: LPMC_rumboost, LPMC_rumboost_nomono: LPMC_rumboost, LPMC_rumboost_noz: LPMC_rumboost, LPMC_rumboost_fe: LPMC_rumboost}

@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.vscode/
+.DS_Store
+# inputs and outputs are never committed (see data/README.md)
+/data/*
+!/data/README.md
+/splits/
+/results/
+/figures/
+/figures_data/
+/hpo/
+*.pt
+*.log
+# biogeme scratch files written into cwd
+biogeme.toml
+__*.iter
+*.html

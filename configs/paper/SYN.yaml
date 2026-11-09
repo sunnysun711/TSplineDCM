@@ -1,0 +1,11 @@
+dataset: SYN
+main: tspline
+tune: {trials: 20, splits: "0"}
+splits: "0-4"
+ind_splits: "0"
+streams:
+  - [SYN_tspline]
+  - [SYN_tspline_level]
+  - [SYN_tspline_homo]
+no_tune: []
+inherit: {}

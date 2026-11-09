@@ -1,0 +1,24 @@
+# RUMBoost (Salvadé & Hillel 2025): one LightGBM ensemble per alternative, softmax cross-entropy, trees split on ONE
+# feature each (no interactions), monotone constraints from the dataset yaml's mono_dirs. See train_boost.py.
+# Variants are experiment-yaml overrides of rum_config (socio / monotone / smooth), run under their own model_name.
+backend: rumboost
+model_class: rumboost
+rum_config:
+  socio: utility          # utility (official: z inside every utility) | none | functional_effect
+  monotone: true
+  smooth: false           # true = PCUF: monotone PCHIP through the stair means, knots chosen on the validation set
+boost_config:
+  learning_rate: 0.1
+  num_leaves: 7
+  min_data_in_leaf: 20
+  lambda_l2: 0.0
+  num_boost_round: 3000
+  early_stopping_round: 100
+  num_threads: 8
+  num_leaves_fe: 15       # functional_effect only: the z ensemble may be deeper (interactions among z)
+train_config: {}          # tune.py --max-epochs writes train_config.epochs here = cap on boosting rounds
+search_space:
+  boost_config.learning_rate: {type: loguniform, lo: 0.02, hi: 0.5}
+  boost_config.num_leaves: {type: int, lo: 2, hi: 31}
+  boost_config.min_data_in_leaf: {type: int, lo: 5, hi: 200}
+  boost_config.lambda_l2: {type: loguniform, lo: 1.0e-3, hi: 10.0}

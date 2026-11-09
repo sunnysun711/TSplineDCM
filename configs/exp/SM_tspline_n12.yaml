@@ -1,0 +1,20 @@
+dataset: SM
+model: tspline
+model_name: tspline_n12
+splits: 0-99
+init_seeds: [42]
+overrides:
+  dcm_config:
+    learn_asc: true
+    alt_xs_knots:
+      TRAIN: [12, 7, 5]
+      SM: [12, 7, 5]
+      CAR: [12, 7]
+  model_config:
+    MC_k: 3
+    MC_delta_floor: 0.01
+    SP_heter_target: increment
+  train_config:
+    epochs: 100
+    early_stopping_patience: 30
+    eval_mode: mc

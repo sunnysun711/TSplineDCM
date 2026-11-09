@@ -1,0 +1,25 @@
+# Fully-connected DNN benchmark.
+# benchmark_config is handed to the model instance (models/fdnn.py FDNN_DEFAULTS <- self.cfg)
+# and recorded in metrics.json; nothing is written to module-level state.
+backend: torch
+model_class: fdnn
+benchmark_config:
+  hidden_layers: [250, 250]
+  activation: relu
+  drop_out: 1.0e-05
+model_config: {}
+train_config:
+  batch_size: 1024
+  lr: 0.01
+  weight_decay: 0.0
+  scheduler: none
+  epochs: 200
+  early_stopping_patience: 30
+  compact_log: true
+  log_every: 5
+  eval_mode: mu
+search_space:
+  benchmark_config.hidden_layers: {type: cat_list, choices: [[100, 100], [250, 250], [500, 500], [250, 250, 250]]}
+  benchmark_config.drop_out: {type: loguniform, lo: 1.0e-6, hi: 0.3}
+  train_config.lr: {type: loguniform, lo: 1.0e-3, hi: 1.0e-1}
+  train_config.weight_decay: {type: loguniform, lo: 1.0e-8, hi: 1.0e-3}

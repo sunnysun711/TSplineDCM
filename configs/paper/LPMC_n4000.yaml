@@ -1,0 +1,21 @@
+# python paper.py configs/paper/LPMC_n4000.yaml --stage run analyze
+dataset: LPMC_n4000_officialtest
+main: tspline
+tune:
+  trials: 0
+  splits: '0'
+splits: 0-19
+ind_splits: '0'
+streams:
+- - LPMCn4000_tspline
+  - LPMCn4000_tspline_homo
+- - LPMCn4000_rumboost
+  - LPMCn4000_gbdt
+  - LPMCn4000_fdnn
+no_tune:
+- LPMCn4000_tspline
+- LPMCn4000_tspline_homo
+- LPMCn4000_rumboost
+- LPMCn4000_gbdt
+- LPMCn4000_fdnn
+inherit: {}

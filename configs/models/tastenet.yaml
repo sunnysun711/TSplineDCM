@@ -1,0 +1,25 @@
+# TasteNet benchmark (per-alternative taste heads, TasteNet-paper setup).
+backend: torch
+model_class: tastenet
+benchmark_config:
+  hidden_activation: relu
+  output_activation: exp
+  hidden_layers: [110]
+  l2_reg: 0.0
+  fix_CO: true
+  set_ASC_zero: CAR
+model_config: {}
+train_config:
+  batch_size: 1024
+  lr: 0.01
+  weight_decay: 0.0
+  scheduler: none
+  epochs: 200
+  early_stopping_patience: 30
+  compact_log: true
+  log_every: 5
+  eval_mode: mu
+search_space:
+  benchmark_config.hidden_layers: {type: cat_list, choices: [[55], [110], [220], [110, 110]]}
+  benchmark_config.l2_reg: {type: loguniform, lo: 1.0e-8, hi: 1.0e-2}
+  train_config.lr: {type: loguniform, lo: 1.0e-3, hi: 1.0e-1}

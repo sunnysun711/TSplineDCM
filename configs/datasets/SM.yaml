@@ -1,0 +1,31 @@
+# DcmConfig for Swissmetro, RumBoost-paper preprocessing.
+# Split file: splits/SM.npz
+name: SM
+file_name: Swissmetro/swissmetro_processed_rumboost.csv
+alt_names: [TRAIN, SM, CAR]
+alt_av_cols: [-3, -2, -1]
+alt_label_cols: [22, 23, 24]
+x_names: [TT, CO, HE]
+alt_xs:
+  TRAIN: [TT, CO, HE]
+  SM: [TT, CO, HE]
+  CAR: [TT, CO]
+alt_x_cols:
+  TRAIN: [1, 2, 3]
+  SM: [4, 5, 6]
+  CAR: [7, 8]
+z_names: [MALE, FIRST, PURPOSE_1, PURPOSE_2, PURPOSE_3, PURPOSE_4, PURPOSE_5, PURPOSE_6, PURPOSE_7, PURPOSE_8, AGE_1, AGE_2]
+z_cols: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+ID_col: 0
+share_mc: false
+mono_dirs: {CO: -1, TT: -1, HE: -1}   # follows the RumBoost paper
+mono_types: {CO: strict, TT: strict, HE: strict}
+fix_asc_zero: CAR
+learn_asc: true
+asc_learner: linear
+alt_xs_knots:
+  TRAIN: [20, 20, 4]
+  SM: [20, 20, 4]
+  CAR: [20, 20]
+share_taste_p: false
+taste_split_attrs: [TT, HE, CO]

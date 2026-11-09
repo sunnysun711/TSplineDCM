@@ -1,0 +1,30 @@
+# Run: python run.py configs/exp/SYN_tspline_homo_tuned.yaml
+dataset: SYN
+model: tspline
+model_name: tspline_homo
+splits: 0-4
+init_seeds: [42]
+overrides:
+  dcm_config:
+    # learn_asc is NOT overridden: configs/datasets/SYN.yaml sets it to false (no z head; utility = ASC + f(TT) like the DGP).
+    # The first stage-6 run had learn_asc: true here by mistake (z-spline head on) -> results moved to SYN_zhead.
+    alt_xs_knots:
+      WALK: [60]
+      PT: [60]
+      CAR: [60]
+      CYCLE: [60]
+    k_gpi_cap: 0.0
+  model_config:
+    MC_k: 3
+    MC_delta_floor: 0.0
+    SP_heter_target: increment
+  train_config:
+    epochs: 100
+    early_stopping_patience: 30
+    eval_mode: mc
+    batch_size: 1024
+search_space:
+  dcm_config.k_gpi_cap: null
+  model_config.SP_k_gpi_start: null
+  model_config.T_beta: null
+  model_config.T_vae_layers: null

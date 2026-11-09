@@ -1,0 +1,7 @@
+# Run: python run.py configs/exp/SYN_gbdt.yaml
+dataset: SYN
+model: gbdt
+model_name: gbdt
+splits: 0-4
+init_seeds: [42]
+overrides: {}

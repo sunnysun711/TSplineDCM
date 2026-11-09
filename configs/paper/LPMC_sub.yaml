@@ -1,0 +1,11 @@
+# python paper.py configs/paper/LPMC_sub.yaml --stage tune run analyze
+dataset: LPMC_sub_officialtest
+main: tspline
+tune: {trials: 30, splits: "0-2"}
+splits: "0-99"
+ind_splits: "0"
+streams:
+  - [LPMCsub_tspline, LPMCsub_tspline_homo]
+  - [LPMCsub_rumboost, LPMCsub_gbdt, LPMCsub_fdnn]
+no_tune: []
+inherit: {}

@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper."
+title: "TSplineDCM: A semiparametric taste-spline utility model for heterogeneous discrete choices"
+type: software
+license: MIT
+repository-code: "https://github.com/sunnysun711/TSplineDCM"
+authors:
+  - family-names: Sun
+    given-names: Yichen
+    email: yichensun@my.swjtu.edu.cn
+    orcid: "https://orcid.org/0000-0002-7399-6107"
+    affiliation: "School of Transportation and Logistics, Southwest Jiaotong University"
+  - family-names: Liu
+    given-names: Zhanru
+    email: liuzhanru@my.swjtu.edu.cn
+    orcid: "https://orcid.org/0009-0003-8267-4980"
+    affiliation: "School of Transportation and Logistics, Southwest Jiaotong University"
+  - family-names: Zhai
+    given-names: Guocong
+    email: gzhai@swjtu.edu.cn
+    orcid: "https://orcid.org/0000-0003-4054-2376"
+    affiliation: "School of Transportation and Logistics, Southwest Jiaotong University"
+  - family-names: Zou
+    given-names: Jiaming
+    email: zjm624@my.swjtu.edu.cn
+    orcid: "https://orcid.org/0000-0003-2193-5326"
+    affiliation: "School of Transportation and Logistics, Southwest Jiaotong University"
+  - family-names: Shuai
+    given-names: Bin
+    email: shuaibin@swjtu.edu.cn
+    orcid: "https://orcid.org/0000-0002-0512-6580"
+    affiliation: "School of Transportation and Logistics, Southwest Jiaotong University"

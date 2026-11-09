@@ -1,0 +1,17 @@
+# Learning curve: LPMC train+val pool shrunk to ~30,000 rows of whole households, official
+# test unchanged, splits 0-19. Hyperparameters = LPMC_gbdt_tuned.yaml (tuned at 54,766 rows), not retuned.
+# Run: python paper.py configs/paper/LPMC_n30000.yaml --stage run analyze
+dataset: LPMC
+model: gbdt
+splits_name: LPMC_n30000_officialtest
+model_name: gbdt
+splits: 0-19
+init_seeds:
+- 42
+overrides:
+  boost_config:
+    learning_rate: 0.017
+    num_leaves: 14
+    min_data_in_leaf: 174
+    lambda_l2: 0.2538
+    feature_fraction: 0.854

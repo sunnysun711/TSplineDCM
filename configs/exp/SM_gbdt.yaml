@@ -1,0 +1,7 @@
+# Run: python run.py configs/exp/SM_gbdt_tuned.yaml
+dataset: SM
+model: gbdt
+model_name: gbdt
+splits: 0-99
+init_seeds: [42]
+overrides: {}

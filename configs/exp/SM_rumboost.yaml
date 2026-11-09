@@ -1,0 +1,7 @@
+# Run: python run.py configs/exp/SM_rumboost_tuned.yaml
+dataset: SM
+model: rumboost
+model_name: rumboost
+splits: 0-99
+init_seeds: [42]
+overrides: {}

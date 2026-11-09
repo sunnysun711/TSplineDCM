@@ -1,0 +1,8 @@
+# Run: python run.py configs/exp/LPMC_taste_dcm_tuned.yaml
+dataset: LPMC
+splits_name: LPMC_officialtest
+model: taste_dcm
+model_name: taste_dcm
+splits: 0-99
+init_seeds: [42]
+overrides: {}

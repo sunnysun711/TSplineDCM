@@ -1,0 +1,23 @@
+# L-MNL (Sifringer et al. 2020): linear MNL over the attributes + DNN(z) added to every utility. models/l_mnl.py
+backend: torch
+model_class: l_mnl
+benchmark_config:
+  hidden_layers: [100, 100]
+  activation: relu
+  drop_out: 1.0e-3
+model_config: {}
+train_config:
+  batch_size: 1024
+  lr: 0.01
+  weight_decay: 0.0
+  scheduler: none
+  epochs: 200
+  early_stopping_patience: 30
+  compact_log: true
+  log_every: 5
+  eval_mode: mu
+search_space:
+  benchmark_config.hidden_layers: {type: cat_list, choices: [[50], [100], [100, 100], [200, 200]]}
+  benchmark_config.drop_out: {type: loguniform, lo: 1.0e-6, hi: 0.3}
+  train_config.lr: {type: loguniform, lo: 1.0e-3, hi: 1.0e-1}
+  train_config.weight_decay: {type: loguniform, lo: 1.0e-8, hi: 1.0e-3}

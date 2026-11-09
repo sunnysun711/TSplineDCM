@@ -1,0 +1,8 @@
+# Classical MNL estimated by maximum likelihood via biogeme.
+# Pick the utility spec per dataset in the experiment yaml:
+#   overrides: {biogeme_config: {builder: SM_full_id | LPMC_full | SYN_full}}
+backend: biogeme
+model_class: mnl_biogeme
+biogeme_config:
+  builder: null   # must be set by the experiment yaml
+# no search_space: maximum likelihood has no hyperparameters; tune.py freezes the base yaml as-is

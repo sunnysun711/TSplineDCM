@@ -1,0 +1,19 @@
+# Learning curve: LPMC train+val pool shrunk to ~15,000 rows of whole households, official
+# test unchanged, splits 0-19. Hyperparameters = LPMC_fdnn_tuned.yaml (tuned at 54,766 rows), not retuned.
+# Run: python paper.py configs/paper/LPMC_n15000.yaml --stage run analyze
+dataset: LPMC
+model: fdnn
+splits_name: LPMC_n15000_officialtest
+model_name: fdnn
+splits: 0-19
+init_seeds:
+- 42
+overrides:
+  benchmark_config:
+    hidden_layers:
+    - 500
+    - 500
+    drop_out: 0.02476
+  train_config:
+    lr: 0.00141
+    weight_decay: 0.0008599

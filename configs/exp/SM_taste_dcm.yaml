@@ -1,0 +1,7 @@
+# Run: python run.py configs/exp/SM_taste_dcm_tuned.yaml
+dataset: SM
+model: taste_dcm
+model_name: taste_dcm
+splits: 0-99
+init_seeds: [42]
+overrides: {}
